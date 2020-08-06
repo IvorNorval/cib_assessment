@@ -17,13 +17,15 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   Future<void> getLocationData() async {
-    WeatherModel weatherModel = WeatherModel();
-    var weatherData = await weatherModel.getLocationWeather();
+    WeatherService weatherService = WeatherService();
+    var weatherData = await weatherService.get7DayWeather();
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) {
-          return WeatherForecast();
+          return WeatherForecast(
+            dailyModels: weatherData,
+          );
         },
       ),
     );
@@ -36,11 +38,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
         decoration: BoxDecoration(
             image: DecorationImage(
           image: AssetImage('images/weather1.jpg'),
+          fit: BoxFit.cover,
         )),
         child: Center(
           child: SpinKitRipple(
-            color: Colors.white,
-            size: 200.0,
+            color: Color(0xffE76704),
+            size: 220.0,
           ),
         ),
       ),
