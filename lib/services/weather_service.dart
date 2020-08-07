@@ -19,16 +19,19 @@ class WeatherService {
   List<WeatherModel> getWeatherModels(dynamic weatherData) {
     List<WeatherModel> weatherDays = [];
     if (weatherData != null) {
-      for (int n = 0; n < 7; n++) {
+      for (int n = 0; n < 8; n++) {
         WeatherModel weather = new WeatherModel();
-        weather.timezone = weatherData['timezone'];
+        weather.timezoneOffset = weatherData['timezone_offset'];
         int epochTime = weatherData['daily'][n]['dt']; //daily[0].dt
-        weather.dt = DateTime.fromMillisecondsSinceEpoch(epochTime * 1000, isUtc: true);
+        weather.dt = DateTime.fromMillisecondsSinceEpoch(epochTime * 1000, isUtc: false);
+
         epochTime = weatherData['daily'][n]['sunrise'];
-        weather.sunrise = DateTime.fromMillisecondsSinceEpoch(epochTime * 1000, isUtc: true);
+        weather.sunrise = DateTime.fromMillisecondsSinceEpoch(epochTime * 1000, isUtc: false);
+
         epochTime = weatherData['daily'][n]['sunset'];
-        weather.sunset = DateTime.fromMillisecondsSinceEpoch(epochTime * 1000, isUtc: true);
-        double temp = weatherData['daily'][n]['temp']['day']; //daily[0].temp.day
+        weather.sunset = DateTime.fromMillisecondsSinceEpoch(epochTime * 1000, isUtc: false);
+
+        var temp = weatherData['daily'][n]['temp']['day']; //daily[0].temp.day
         weather.dayTemp = temp.round();
         temp = weatherData['daily'][n]['temp']['min']; //daily[0].temp.min
         weather.minTemp = temp.round();
@@ -37,17 +40,35 @@ class WeatherService {
         weather.pressure = weatherData['daily'][n]['pressure']; //daily[0].pressure
         weather.humidity = weatherData['daily'][n]['humidity']; //daily[0].humidity
         weather.windSpeed = weatherData['daily'][n]['wind_speed']; //daily[0].wind_speed
-        weather.windDeg = weatherData['daily'][n]['wind_deg']; //daily[0].wind_deg
+
+        if (weatherData['daily'][n]['wind_deg'] < 180)
+          weather.windDeg = weatherData['daily'][n]['wind_deg']; //daily[0].wind_deg
+        else
+          weather.windDeg = -(360 - weatherData['daily'][n]['wind_deg']); //daily[0].wind_deg
+
         weather.weatherId = weatherData['daily'][n]['weather'][0]['id']; //daily[0].weather[0].id
         weather.weatherIcon = weatherData['daily'][n]['weather'][0]['icon']; //daily[0].weather[0].icon
         weather.weatherDescription = weatherData['daily'][n]['weather'][0]['description']; //daily[0].weather[0].description
         weather.clouds = weatherData['daily'][n]['clouds']; //daily[0].clouds
-        if (weatherData['daily'][n]['rain'] != null) {
-          weather.rain = weatherData['daily'][n]['rain']; //daily[0].rain
-        }
 
-        //var tempPop = weatherData['daily'][n]['pop'];
-        //weather.pop = tempPop; //daily[0].pop
+        if (weatherData['daily'][n]['rain'] != null) {
+          if (weatherData['daily'][n]['rain'] < 1)
+            weather.rain = 1;
+          else {
+            double rain = weatherData['daily'][n]['rain'];
+            weather.rain = rain.round();
+          }
+        } else
+          weather.rain = 0;
+
+        if (weatherData['daily'][n]['pop'] == 1)
+          weather.pop = 100;
+        else if (weatherData['daily'][n]['pop'] != null && weatherData['daily'][n]['pop'] != 0) {
+          double pop = weatherData['daily'][n]['pop'];
+          weather.pop = (pop * 100).round();
+        } else
+          weather.pop = 0;
+
         weather.uvi = weatherData['daily'][n]['uvi']; //daily[0].uvi
         weatherDays.add(weather);
       }

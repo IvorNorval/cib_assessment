@@ -1,4 +1,6 @@
+import 'package:cib_assessment/constants.dart';
 import 'package:cib_assessment/models/weather_model.dart';
+import 'package:cib_assessment/screens/loading_screen.dart';
 import 'package:cib_assessment/widgets/weather_list_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +14,57 @@ class WeatherForecast extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: ListView.builder(
-          itemCount: dailyModels.length,
-          itemBuilder: (context, index) {
-            return WeatherListTile(
-              weatherModel: dailyModels[index],
-            );
-          },
+        body: Column(
+          children: [
+            GestureDetector(
+              onTap: () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return LoadingScreen();
+                    },
+                  ),
+                );
+              },
+              child: Container(
+                height: 80,
+                width: 250,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Weather outlook',
+                      style: kHeadingTextStyle,
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Icon(Icons.refresh),
+                  ],
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.deepOrangeAccent,
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Center(
+                child: Container(
+                  padding: EdgeInsets.all(20.0),
+                  child: ListView.builder(
+                    itemCount: dailyModels.length,
+                    itemBuilder: (context, index) {
+                      return WeatherListTile(
+                        weatherModel: dailyModels[index],
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

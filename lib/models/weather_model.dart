@@ -1,6 +1,7 @@
 class WeatherModel {
   DateTime dt;
   String timezone;
+  int timezoneOffset;
   DateTime sunrise;
   DateTime sunset;
   int dayTemp;
@@ -14,8 +15,8 @@ class WeatherModel {
   String weatherIcon;
   String weatherDescription;
   int clouds;
-  double rain;
-  double pop;
+  int rain;
+  int pop;
   double uvi;
   String icoUrl;
 
