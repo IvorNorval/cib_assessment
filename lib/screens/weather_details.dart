@@ -13,7 +13,7 @@ class WeatherDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.grey,
+        backgroundColor: kLemonMeringue,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

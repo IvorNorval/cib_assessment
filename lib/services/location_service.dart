@@ -13,4 +13,8 @@ class Location {
       print(e);
     }
   }
+
+  Future<bool> idGpsOn() async {
+    return (await Geolocator().isLocationServiceEnabled());
+  }
 }

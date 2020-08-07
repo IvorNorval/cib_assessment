@@ -1,3 +1,4 @@
+import 'package:cib_assessment/constants.dart';
 import 'package:cib_assessment/models/weather_model.dart';
 import 'package:cib_assessment/screens/weather_details.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,10 +18,10 @@ class WeatherListTile extends StatelessWidget {
       subtitle: Text('${weatherModel.minTemp.toString()}˚C to ${weatherModel.maxTemp.toString()}˚C'),
       trailing: Icon(
         Icons.arrow_forward_ios,
-        color: Colors.deepOrangeAccent,
+        color: kOrange,
       ),
       onTap: () {
-        var typedName = Navigator.push(
+        Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) {

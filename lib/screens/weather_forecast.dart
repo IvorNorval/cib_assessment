@@ -44,7 +44,7 @@ class WeatherForecast extends StatelessWidget {
                   ],
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.deepOrangeAccent,
+                  color: kOrange,
                   borderRadius: BorderRadius.circular(10.0),
                 ),
               ),

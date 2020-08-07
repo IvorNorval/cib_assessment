@@ -9,9 +9,15 @@ const kExclude = 'hourly,minutely,current';
 const kUnits = 'metric';
 const kIcon = 'http://openweathermap.org/img/wn/';
 
+const kPrussianBlue = Color(0xff003049);
+const kMaxRed = Color(0xffd62828);
+const kOrange = Color(0xfff77f00);
+const kMaxYellowRed = Color(0xfffcbf49);
+const kLemonMeringue = Color(0xffeae2b7);
+
 const kLabelTextStyle1 = TextStyle(
   fontSize: 24.0,
-  color: Colors.amberAccent,
+  color: kPrussianBlue,
   fontWeight: FontWeight.bold,
 );
 const kHeadingTextStyle = TextStyle(
@@ -22,6 +28,6 @@ const kHeadingTextStyle = TextStyle(
 
 const kLabelTextStyle2 = TextStyle(
   fontSize: 32.0,
-  color: Colors.amberAccent,
+  color: kPrussianBlue,
   fontWeight: FontWeight.bold,
 );

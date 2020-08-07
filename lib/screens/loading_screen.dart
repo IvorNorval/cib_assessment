@@ -1,4 +1,6 @@
+import 'package:cib_assessment/constants.dart';
 import 'package:cib_assessment/screens/weather_forecast.dart';
+import 'package:cib_assessment/services/location_service.dart';
 import 'package:cib_assessment/services/weather_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,16 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   Future<void> getLocationData() async {
+    Location location = Location();
+    if (!(await location.idGpsOn())) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    }
+
     WeatherService weatherService = WeatherService();
     var weatherData = await weatherService.get7DayWeather();
     Navigator.push(
@@ -42,11 +54,23 @@ class _LoadingScreenState extends State<LoadingScreen> {
         )),
         child: Center(
           child: SpinKitRipple(
-            color: Color(0xffE76704),
+            color: kMaxRed,
             size: 220.0,
           ),
         ),
       ),
     );
   }
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("On Locatin"),
+    content: Text("Please switch on location service?"),
+    actions: [
+      FlatButton(
+        child: Text("OK"),
+        onPressed: () {},
+      ),
+    ],
+  );
 }
