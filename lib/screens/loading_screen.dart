@@ -20,6 +20,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   Future<void> getLocationData() async {
     Location location = Location();
+
+    // Show popup is GPS is off
     if (!(await location.idGpsOn())) {
       showDialog(
         context: context,
@@ -29,6 +31,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       );
     }
 
+    // Get 7 day forecast
     WeatherService weatherService = WeatherService();
     var weatherData = await weatherService.get7DayWeather();
     Navigator.push(
@@ -53,6 +56,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
           fit: BoxFit.cover,
         )),
         child: Center(
+          // spinner while loading
           child: SpinKitRipple(
             color: kMaxRed,
             size: 220.0,

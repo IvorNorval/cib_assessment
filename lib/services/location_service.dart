@@ -4,6 +4,7 @@ class Location {
   double latitude;
   double longitude;
 
+  // Get current position
   Future<void> getCurrentPosition() async {
     try {
       Position position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
@@ -14,6 +15,7 @@ class Location {
     }
   }
 
+  // Check GPS is on
   Future<bool> idGpsOn() async {
     return (await Geolocator().isLocationServiceEnabled());
   }

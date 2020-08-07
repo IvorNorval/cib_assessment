@@ -16,6 +16,7 @@ class WeatherForecast extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
+            // Heading & refresh button
             GestureDetector(
               onTap: () async {
                 Navigator.push(
@@ -28,7 +29,8 @@ class WeatherForecast extends StatelessWidget {
                 );
               },
               child: Container(
-                height: 80,
+                margin: EdgeInsets.only(top: 20.0),
+                height: 60,
                 width: 250,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -49,6 +51,7 @@ class WeatherForecast extends StatelessWidget {
                 ),
               ),
             ),
+            // Day forecast summary
             Expanded(
               child: Center(
                 child: Container(

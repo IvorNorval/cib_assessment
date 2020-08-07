@@ -31,3 +31,8 @@ const kLabelTextStyle2 = TextStyle(
   color: kPrussianBlue,
   fontWeight: FontWeight.bold,
 );
+const kLabelTextStyle3 = TextStyle(
+  fontSize: 22.0,
+  color: kPrussianBlue,
+  fontWeight: FontWeight.bold,
+);

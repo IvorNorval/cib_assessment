@@ -13,8 +13,11 @@ class WeatherListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      // openweathermap.org weather icon
       leading: Image.network(weatherModel.getIconUrl()),
-      title: Text(DateFormat.MMMd().format(weatherModel.dt)),
+      // date
+      title: Text(DateFormat('E d MMM').format(weatherModel.dt)),
+      // min, max temp
       subtitle: Text('${weatherModel.minTemp.toString()}˚C to ${weatherModel.maxTemp.toString()}˚C'),
       trailing: Icon(
         Icons.arrow_forward_ios,

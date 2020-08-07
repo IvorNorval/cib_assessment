@@ -7,6 +7,7 @@ class NetworkHelper {
 
   final String url;
 
+  // Make API call to api.openweathermap.org
   Future getData() async {
     http.Response response = await http.get(url);
 

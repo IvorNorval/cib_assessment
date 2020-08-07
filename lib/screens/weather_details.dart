@@ -18,8 +18,9 @@ class WeatherDetail extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // heading as date
               Text(
-                DateFormat.MMMd().format(weatherModel.dt),
+                DateFormat('E d MMM').format(weatherModel.dt),
                 style: kLabelTextStyle2,
               ),
               SizedBox(
@@ -28,6 +29,7 @@ class WeatherDetail extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // sunrise time
                   Column(
                     children: [
                       Image.asset(
@@ -39,10 +41,12 @@ class WeatherDetail extends StatelessWidget {
                       ),
                     ],
                   ),
+                  // openweathermap.org weather icon
                   Image.network(weatherModel.getIconUrl()),
                   Column(
                     children: [
                       Image.asset('images/icons8-sunset-100.png'),
+                      // sunset time
                       Text(
                         DateFormat.Hm().format(weatherModel.sunset),
                         style: kLabelTextStyle1,
@@ -54,6 +58,7 @@ class WeatherDetail extends StatelessWidget {
               SizedBox(
                 height: 15.0,
               ),
+              // min max temp
               Text(
                 '${weatherModel.minTemp.toString()}˚C to ${weatherModel.maxTemp.toString()}˚C',
                 style: kLabelTextStyle1,
@@ -61,6 +66,7 @@ class WeatherDetail extends StatelessWidget {
               SizedBox(
                 height: 15.0,
               ),
+              // Wind direction indicator
               Container(
                 width: 120.0,
                 height: 120.0,
@@ -69,6 +75,7 @@ class WeatherDetail extends StatelessWidget {
                   child: Image.asset('images/arrow-icon-1162.png'),
                 ),
               ),
+              // wind speed
               Text(
                 'Wind ${weatherModel.windSpeed} meter / second',
                 style: kLabelTextStyle1,
@@ -76,6 +83,7 @@ class WeatherDetail extends StatelessWidget {
               SizedBox(
                 height: 15.0,
               ),
+              // UV index
               Text(
                 'UV index ${weatherModel.uvi}',
                 style: kLabelTextStyle1,
@@ -83,13 +91,15 @@ class WeatherDetail extends StatelessWidget {
               SizedBox(
                 height: 15.0,
               ),
+              // rain forecast
               Text(
-                (weatherModel.rain != 0) ? '${weatherModel.pop} % change of ${weatherModel.rain} mm rain' : "No rain",
-                style: kLabelTextStyle1,
+                (weatherModel.rain != 0) ? '${weatherModel.pop} % chance of ${weatherModel.rain} mm of rain' : "No rain",
+                style: kLabelTextStyle3,
               ),
             ],
           ),
         ),
+        // back button
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.keyboard_backspace),
           backgroundColor: Colors.deepOrangeAccent,
