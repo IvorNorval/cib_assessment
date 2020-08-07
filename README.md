@@ -9,7 +9,7 @@ This app shows a summary of the seven-day weather forecast and when you click on
 ![Alt text](/screenshot3.png?raw=true "Optional Title")
 ![Alt text](/screenshot4.png?raw=true "Optional Title")
 
-Dependencies:
+Dependencies:  
    https://pub.dev/packages/geolocator  
    https://pub.dev/packages/http  
    https://pub.dev/packages/flutter_spinkit  
