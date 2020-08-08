@@ -42,7 +42,7 @@ class WeatherService {
         weather.maxTemp = temp.round();
         weather.pressure = weatherData['daily'][n]['pressure']; //daily[0].pressure
         weather.humidity = weatherData['daily'][n]['humidity']; //daily[0].humidity
-        weather.windSpeed = weatherData['daily'][n]['wind_speed']; //daily[0].wind_speed
+        weather.windSpeed = weatherData['daily'][n]['wind_speed'].toDouble(); //daily[0].wind_speed
 
         // change wind direction degrees to degrees to rotate wind direction image
         if (weatherData['daily'][n]['wind_deg'] < 180)
@@ -75,7 +75,7 @@ class WeatherService {
         } else
           weather.pop = 0;
 
-        weather.uvi = weatherData['daily'][n]['uvi']; //daily[0].uvi
+        weather.uvi = weatherData['daily'][n]['uvi'].toDouble(); //daily[0].uvi
         weatherDays.add(weather);
       }
     }
