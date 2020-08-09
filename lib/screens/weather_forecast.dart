@@ -38,9 +38,9 @@ class WeatherForecast extends StatelessWidget {
                   children: [
                     // ignore: missing_required_param
                     Shimmer.fromColors(
-                      baseColor: Color(0xFFedddd4),
+                      baseColor: Colors.white,
                       period: Duration(milliseconds: 5000),
-                      highlightColor: Color(0xFF283d3b),
+                      highlightColor: kPrussianBlue,
                       child: Text(
                         'Weather outlook',
                         style: kHeadingTextStyle,
@@ -49,7 +49,9 @@ class WeatherForecast extends StatelessWidget {
                     SizedBox(
                       width: 10.0,
                     ),
-                    Icon(Icons.refresh),
+                    Icon(
+                      Icons.refresh,
+                    ),
                   ],
                 ),
                 decoration: BoxDecoration(

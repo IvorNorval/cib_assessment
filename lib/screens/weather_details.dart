@@ -150,7 +150,7 @@ class _WeatherDetailState extends State<WeatherDetail> with SingleTickerProvider
         // back button
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.keyboard_backspace),
-          backgroundColor: Colors.deepOrangeAccent,
+          backgroundColor: kOrange,
           onPressed: () {
             Navigator.pop(context);
           },
