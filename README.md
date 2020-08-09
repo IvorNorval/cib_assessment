@@ -8,6 +8,7 @@ This app shows a summary of the seven-day weather forecast and when you click on
 ![Alt text](/screenshot2.png?raw=true "Optional Title")
 ![Alt text](/screenshot3.png?raw=true "Optional Title")
 ![Alt text](/screenshot4.png?raw=true "Optional Title")
+![Alt text](/Demo.mp4?raw=true "Optional Title")
 
 Dependencies:  
    https://pub.dev/packages/geolocator  
