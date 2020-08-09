@@ -4,6 +4,7 @@ import 'package:cib_assessment/screens/loading_screen.dart';
 import 'package:cib_assessment/widgets/weather_list_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class WeatherForecast extends StatelessWidget {
   final List<WeatherModel> dailyModels;
@@ -35,9 +36,15 @@ class WeatherForecast extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'Weather outlook',
-                      style: kHeadingTextStyle,
+                    // ignore: missing_required_param
+                    Shimmer.fromColors(
+                      baseColor: Color(0xFFedddd4),
+                      period: Duration(milliseconds: 5000),
+                      highlightColor: Color(0xFF283d3b),
+                      child: Text(
+                        'Weather outlook',
+                        style: kHeadingTextStyle,
+                      ),
                     ),
                     SizedBox(
                       width: 10.0,

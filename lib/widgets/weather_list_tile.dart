@@ -14,7 +14,13 @@ class WeatherListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       // openweathermap.org weather icon
-      leading: Image.network(weatherModel.getIconUrl()),
+      leading: CircleAvatar(
+        backgroundColor: kLemonMeringue,
+        radius: 25.0,
+        backgroundImage: NetworkImage(
+          weatherModel.getIconUrl(),
+        ),
+      ),
       // date
       title: Text(DateFormat('E d MMM').format(weatherModel.dt)),
       // min, max temp

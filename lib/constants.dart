@@ -11,7 +11,7 @@ const kIcon = 'http://openweathermap.org/img/wn/';
 
 const kPrussianBlue = Color(0xff003049);
 const kMaxRed = Color(0xffd62828);
-const kOrange = Color(0xfff77f00);
+const kOrange = Color(0xffEC6E4C);
 const kMaxYellowRed = Color(0xfffcbf49);
 const kLemonMeringue = Color(0xffeae2b7);
 
