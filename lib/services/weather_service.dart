@@ -61,7 +61,7 @@ class WeatherService {
           if (weatherData['daily'][n]['rain'] < 1)
             weather.rain = 1;
           else {
-            double rain = weatherData['daily'][n]['rain'];
+            double rain = weatherData['daily'][n]['rain'].toDouble();
             weather.rain = rain.round();
           }
         } else
