@@ -77,6 +77,9 @@ class WeatherService {
           weather.pop = 0;
 
         weather.uvi = weatherData['daily'][n]['uvi'].toDouble(); //daily[0].uvi
+
+        weatherData['daily'][n]['uvi'] != null ? weather.uvi = weatherData['daily'][n]['uvi'].toDouble() : weather.uvi = 0;
+
         weatherDays.add(weather);
       }
     }
