@@ -7,7 +7,9 @@ class WeatherService {
   // get 7 day forecast
   Future<List<WeatherModel>> get7DayWeather() async {
     Location location = Location();
-    await location.getCurrentPosition();
+    if ((await location.idGpsOn())) {
+      await location.getCurrentPosition();
+    }
 
     NetworkHelper networkHelper = NetworkHelper(
         '$kOpenWeatherMapUrl$kOneCall?lat=${location.latitude}&lon=${location.longitude}&exclude=$kExclude&appid=$kApiKey&units=$kUnits');
@@ -26,13 +28,16 @@ class WeatherService {
         weather.timezoneOffset = weatherData['timezone_offset'];
 
         int epochTime = weatherData['daily'][n]['dt']; //daily[0].dt
-        weather.dt = DateTime.fromMillisecondsSinceEpoch(epochTime * 1000, isUtc: false);
+        weather.dt =
+            DateTime.fromMillisecondsSinceEpoch(epochTime * 1000, isUtc: false);
 
         epochTime = weatherData['daily'][n]['sunrise'];
-        weather.sunrise = DateTime.fromMillisecondsSinceEpoch(epochTime * 1000, isUtc: false);
+        weather.sunrise =
+            DateTime.fromMillisecondsSinceEpoch(epochTime * 1000, isUtc: false);
 
         epochTime = weatherData['daily'][n]['sunset'];
-        weather.sunset = DateTime.fromMillisecondsSinceEpoch(epochTime * 1000, isUtc: false);
+        weather.sunset =
+            DateTime.fromMillisecondsSinceEpoch(epochTime * 1000, isUtc: false);
 
         var temp = weatherData['daily'][n]['temp']['day']; //daily[0].temp.day
         weather.dayTemp = temp.round();
@@ -40,9 +45,12 @@ class WeatherService {
         weather.minTemp = temp.round();
         temp = weatherData['daily'][n]['temp']['max']; //daily[0].temp.max
         weather.maxTemp = temp.round();
-        weather.pressure = weatherData['daily'][n]['pressure']; //daily[0].pressure
-        weather.humidity = weatherData['daily'][n]['humidity']; //daily[0].humidity
-        weather.windSpeed = weatherData['daily'][n]['wind_speed'].toDouble() * 3.6; //daily[0].wind_speed
+        weather.pressure =
+            weatherData['daily'][n]['pressure']; //daily[0].pressure
+        weather.humidity =
+            weatherData['daily'][n]['humidity']; //daily[0].humidity
+        weather.windSpeed = weatherData['daily'][n]['wind_speed'].toDouble() *
+            3.6; //daily[0].wind_speed
 
         // change wind direction degrees to degrees to rotate wind direction image
         weather.windDeg = weatherData['daily'][n]['wind_deg'];
@@ -51,9 +59,12 @@ class WeatherService {
 //        else
 //          weather.windDeg = -(360 - weatherData['daily'][n]['wind_deg']); //daily[0].wind_deg
 
-        weather.weatherId = weatherData['daily'][n]['weather'][0]['id']; //daily[0].weather[0].id
-        weather.weatherIcon = weatherData['daily'][n]['weather'][0]['icon']; //daily[0].weather[0].icon
-        weather.weatherDescription = weatherData['daily'][n]['weather'][0]['description']; //daily[0].weather[0].description
+        weather.weatherId = weatherData['daily'][n]['weather'][0]
+            ['id']; //daily[0].weather[0].id
+        weather.weatherIcon = weatherData['daily'][n]['weather'][0]
+            ['icon']; //daily[0].weather[0].icon
+        weather.weatherDescription = weatherData['daily'][n]['weather'][0]
+            ['description']; //daily[0].weather[0].description
         weather.clouds = weatherData['daily'][n]['clouds']; //daily[0].clouds
 
         // handle rain exceptions
@@ -70,7 +81,8 @@ class WeatherService {
         // handle probability of rain exceptions.
         if (weatherData['daily'][n]['pop'] == 1)
           weather.pop = 100;
-        else if (weatherData['daily'][n]['pop'] != null && weatherData['daily'][n]['pop'] != 0) {
+        else if (weatherData['daily'][n]['pop'] != null &&
+            weatherData['daily'][n]['pop'] != 0) {
           double pop = weatherData['daily'][n]['pop'];
           weather.pop = (pop * 100).round();
         } else
@@ -78,7 +90,9 @@ class WeatherService {
 
         weather.uvi = weatherData['daily'][n]['uvi'].toDouble(); //daily[0].uvi
 
-        weatherData['daily'][n]['uvi'] != null ? weather.uvi = weatherData['daily'][n]['uvi'].toDouble() : weather.uvi = 0;
+        weatherData['daily'][n]['uvi'] != null
+            ? weather.uvi = weatherData['daily'][n]['uvi'].toDouble()
+            : weather.uvi = 0;
 
         weatherDays.add(weather);
       }

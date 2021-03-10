@@ -22,14 +22,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
     Location location = Location();
 
     // Show popup is GPS is off
-    if (!(await location.idGpsOn())) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-    }
+    // if (!(await location.idGpsOn())) {
+    //   showDialog(
+    //     context: context,
+    //     builder: (BuildContext context) {
+    //       return alert;
+    //     },
+    //   );
+    // }
 
     // Get 7 day forecast
     WeatherService weatherService = WeatherService();
